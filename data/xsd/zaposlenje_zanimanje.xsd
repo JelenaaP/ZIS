@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="zanimanje_zaposlenje" xmlns:zz="zanimanje_zaposlenje">
+
+    <xs:element name="podaci_o_zaposlenju_i_zanimanju">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="redni_broj" type="xs:int"/>
+                <xs:element name="Preduzece" type="xs:string"/>
+                <xs:element name="Mesto_rada" type="xs:string"/>
+                <xs:element name="Registarski_broj" type="xs:int"/>
+                <xs:element name="sifra_delatnosti" type="xs:string"/>
+                <xs:element name="Posao_koji_obavlja" type="xs:string"/>
+                <xs:element name="Fond_zdr_zastite" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

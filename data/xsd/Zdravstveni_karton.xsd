@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zdravstveni_karton"
+    xmlns:zdr="http://www.ftn.uns.ac.rs/zdravstveni_karton" xmlns:zz="zanimanje_zaposlenje">
+    <xs:import namespace="zanimanje_zaposlenje" schemaLocation="zaposlenje_zanimanje.xsd"/>
+    <xs:element name="Zdravstveni_karton">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Licni_podaci">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="prezime_ime_roditelja_ime" type="xs:string"/>
+                            <xs:element name="prezime_ime_lica_izvodioca_osiguranja"
+                                type="xs:string"/>
+                            <xs:element name="Datum_rodjenja">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="\d{2}\.\d{2}\.\d{4}\."/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Mesto_stanovanja_i_opstina" type="xs:string"/>
+                            <xs:element name="Ulica_i_broj" type="xs:string"/>
+                            <xs:element name="Telefon" type="xs:string"/>
+                            <xs:element name="Pol">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:length value="1"/>
+                                        <xs:enumeration value="M"/>
+                                        <xs:enumeration value="Z"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Podaci_o_zdr_zastiti">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Broj_zdr_knjizice" type="zdr:Broj_Zdr"/>
+                            <xs:element name="Kategorija_zdr_zastite"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Podaci_o_zaposlenju_i_zanimanju">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded"
+                                ref="zz:podaci_o_zaposlenju_i_zanimanju"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Rad_pod_posebnim_uslovima" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute ref="zdr:MBG"/>
+            <xs:attribute ref="zdr:znak_upozorenja"/>
+            <xs:attribute ref="zdr:broj_kartona"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="MBG"/>
+    <xs:attribute name="znak_upozorenja"/>
+    <xs:attribute name="broj_kartona"/>
+    <xs:simpleType name="Reg_broj">
+        <xs:restriction base="xs:int">
+            <xs:totalDigits value="8"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="sifra">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Broj_Zdr">
+        <xs:restriction base="xs:int">
+            <xs:totalDigits value="12"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
